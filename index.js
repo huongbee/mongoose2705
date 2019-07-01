@@ -1,18 +1,33 @@
 require('./dbconnect');
 const UserModel = require('./models/user.model');
+// select
+// limit
+// sort
+// SELECT email FROM users ORDER BY email DESC LIMIT 1,2 
+UserModel.find()
+// .select('email password')
+.select({
+    _id: 0,
+    email: 1
+}).sort({email : -1})
+.skip(1) // position
+.limit(2) // quantity
+.then(users=> console.log(users))
+.catch(err=> console.log(err))
+
 
 // delete
-UserModel.deleteMany({
-    $or : [
-        { _id: '5d1622710dec8e2df8ec11bb' },
-        { email: {
-                $eq: 'admin05@gmail.com'
-            }
-        }
-    ]
-})
-.then(result=> console.log(result))
-.catch(err=> console.log(err))
+// UserModel.deleteMany({
+//     $or : [
+//         { _id: '5d1622710dec8e2df8ec11bb' },
+//         { email: {
+//                 $eq: 'admin05@gmail.com'
+//             }
+//         }
+//     ]
+// })
+// .then(result=> console.log(result))
+// .catch(err=> console.log(err))
 
 
 
@@ -66,7 +81,5 @@ UserModel.deleteMany({
 // .catch(error => console.log(error.message))
 
 
-
-// select
 
 
