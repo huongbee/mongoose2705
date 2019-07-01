@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 // })
 mongoose.connect('mongodb://localhost/mongoose2705',{
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
 })
 .then(()=>console.log('DB Connected!'))
 .catch((err)=>console.log(err.message))
