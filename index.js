@@ -1,19 +1,46 @@
 require('./dbconnect');
 const UserModel = require('./models/user.model');
+
+//name LIKE '%Van%'
+UserModel.find()
+.where({name: {
+    $regex : 'Van'
+}})
+.then(users=> console.log(users))
+.catch(err=> console.log(err))
+
+// name LIKE 'Nguyen Van%'
+// UserModel.find({
+    // name: {
+    //     // $regex : /^Nguyen Van/
+    //     $regex : '^Nguyen Van'
+    // }
+// })
+// .then(users=> console.log(users))
+// .catch(err=> console.log(err))
+
+// //name LIKE '%Van Ti'
+// UserModel.find({
+//     name: {
+//         $regex : 'Van Ti$'
+//     }
+// })
+// .then(users=> console.log(users))
+// .catch(err=> console.log(err))
 // select
 // limit
 // sort
 // SELECT email FROM users ORDER BY email DESC LIMIT 1,2 
-UserModel.find()
-// .select('email password')
-.select({
-    _id: 0,
-    email: 1
-}).sort({email : -1})
-.skip(1) // position
-.limit(2) // quantity
-.then(users=> console.log(users))
-.catch(err=> console.log(err))
+// UserModel.find()
+// // .select('email password')
+// .select({
+//     _id: 0,
+//     email: 1
+// }).sort({email : -1})
+// .skip(1) // position
+// .limit(2) // quantity
+// .then(users=> console.log(users))
+// .catch(err=> console.log(err))
 
 
 // delete
@@ -60,12 +87,19 @@ UserModel.find()
 
 // UserModel.insertMany([
 //     {
-//         email: 'admin03@gmail.com',
-//         password: '111111'
+//         email: 'admin04@gmail.com',
+//         password: '111111',
+//         name : 'Nguyen Van Teo'
 //     },
 //     {
-//         email: 'admin04@gmail.com',
-//         password: '111111'
+//         email: 'admin05@gmail.com',
+//         password: '111111',
+//         name : 'Nguyen Van Ti'
+//     },
+//     {
+//         email: 'admin06@gmail.com',
+//         password: '111111',
+//         name : 'Le Van Ti'
 //     }
 // ])
 // .then(users => console.log(users))
